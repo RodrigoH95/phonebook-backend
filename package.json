@@ -7,7 +7,6 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:ui": "cd C:\\Users\\Rodrigo\\Desktop\\Programacion\\Cursos\\FullStackOpen\\part2\\phonebook && npm run build && robocopy C:\\Users\\Rodrigo\\Desktop\\Programacion\\Cursos\\FullStackOpen\\part2\\phonebook\\build C:\\Users\\Rodrigo\\Desktop\\Programacion\\Cursos\\phonebook-backend\\build",
     "deploy": "git add . && git commit -m \"auto build\" && git push origin main"
   },
   "author": "",
