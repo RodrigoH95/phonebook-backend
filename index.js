@@ -94,6 +94,15 @@ app.post('/api/persons', (req, res) => {
     res.status(201).json(person);
 });
 
+app.put('/api/persons/:id', (req, res) => {
+    const id = Number(req.params.id);
+    const index = persons.findIndex(person => person.id === id);
+    const newNumber = req.body.number;
+    persons[index].number = newNumber;
+
+    res.status(204).end();
+})
+
 app.delete('/api/persons/:id', (req, res) => {
     const id = Number(req.params.id);
 
