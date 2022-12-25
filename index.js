@@ -99,7 +99,7 @@ app.put('/api/persons/:id', (req, res, next) => {
 
     Person.findByIdAndUpdate(req.params.id, person, { new: true })
         .then(updatedPerson => {
-            res.status(204).json(updatedPerson);
+            res.json(updatedPerson);
         })
         .catch(err => next(err));
 })
