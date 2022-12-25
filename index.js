@@ -71,20 +71,22 @@ app.post('/api/persons', (req, res) => {
         });
     }
 
-    if(persons.findIndex(person => person.name === body.name) !== -1) {
-        return res.status(500).json({
-            error: 'person already on phonebook'
-        })
-    }
-
-    const person = new Person({
-        name: body.name,
-        number: body.number
-    });
-
-    person.save().then(savedPerson => {
-        res.status(201).json(savedPerson);
+    Person.find({ name: body.name}).then(result => {
+        if(result !== []) {
+            const person = new Person({
+                name: body.name,
+                number: body.number
+            });
+        
+            person.save().then(savedPerson => {
+                res.status(201).json(savedPerson);
+            })
+        } else {
+            res.status(500).json({ error: "Person already on phonebook"});
+        }
     })
+
+
 });
 
 app.put('/api/persons/:id', (req, res, next) => {
