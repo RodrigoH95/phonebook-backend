@@ -1,8 +1,15 @@
+require('dotenv').config();
+
 const express = require('express');
+const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
+const Person = require('./models/person');
 
 const app = express();
+const PORT = process.env.PORT;
+const url = process.env.MONGODB_URI;
+
 
 const unknownEndpoint = (req, res) => {
     res.status(404).send({
@@ -43,7 +50,9 @@ let persons = [
 ]
 
 app.get('/api/persons' ,(req, res) => {
-    res.json(persons);
+    Person.find({}).then(persons => {
+        res.json(persons);
+    })
 });
 
 app.get('/api/info', (req, res) => {
@@ -113,7 +122,6 @@ app.delete('/api/persons/:id', (req, res) => {
 
 app.use(unknownEndpoint);
 
-const PORT = 3001;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
