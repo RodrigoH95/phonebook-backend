@@ -7,6 +7,7 @@
     "start": "node index.js",
     "build:ui": "rm -rf build && cd ../FullStackOpen/part2/phonebook && npm run build && cp -r build ../../../phonebook-backend/",
     "dev": "nodemon index.js",
+    "dev:full": "npm run build:ui && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "git add . && git commit -m uibuild && git push origin main",
     "deploy:full": "npm run build:ui && npm run deploy"
