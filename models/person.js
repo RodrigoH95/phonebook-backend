@@ -6,7 +6,7 @@ console.log("Connecting to", url);
 
 mongoose
   .connect(url)
-  .then((result) => {
+  .then(() => {
     console.log("Connected to MongoDB");
   })
   .catch((error) => {
@@ -17,18 +17,18 @@ const PersonSchema = new mongoose.Schema({
   name: {
     type: String,
     minLength: 3,
-    required: true
+    required: true,
   },
   number: {
     type: String,
     minLength: 8,
     validate: {
-      validator: function(v) {
+      validator: function (v) {
         return /^\d{2,3}-\d*$/.test(v);
       },
-      message: n => `${n.value} is not a valid number`
+      message: (n) => `${n.value} is not a valid number`,
     },
-    required: true
+    required: true,
   },
 });
 
@@ -40,4 +40,4 @@ PersonSchema.set("toJSON", {
   },
 });
 
-module.exports = mongoose.model('Person', PersonSchema);
+module.exports = mongoose.model("Person", PersonSchema);
